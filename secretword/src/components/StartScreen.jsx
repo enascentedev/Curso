@@ -1,6 +1,6 @@
-import './StartScreen.css';
+import '../assets/StartScreen.css';
 
-function StartScreen(startGame) {
+function StartScreen({startGame}) {
   return (
     <div className="start">
       <h1>Secret Word</h1>
