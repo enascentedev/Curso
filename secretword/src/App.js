@@ -20,6 +20,7 @@ function App() {
 	const [pickedWord, setPickedWord] = useState("");
   const [pickedCategory, setPickedCategory] = useState("");
 	const [letters, setLetters] = useState([]);
+	
 
 	const pickWordAndCategory = useCallback(() => {
     // pick a random category
