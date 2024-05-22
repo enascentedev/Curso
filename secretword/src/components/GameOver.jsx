@@ -1,6 +1,6 @@
 import '../assets/GameOver.css';
 
-function GameOver(retry, score) {
+function GameOver({retry, score}) {
   return (
 		<div className="gameover">
 		<h1>Fim de jogo!</h1>
