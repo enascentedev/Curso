@@ -1,0 +1,24 @@
+.container-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-form input,
+.container-form textarea {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.container-form button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.container-form button:hover {
+  background-color: #45a049;
+}

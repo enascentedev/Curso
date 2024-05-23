@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+Aplicação de Lista de Tarefas
+Visão Geral
+Esta aplicação é uma lista de tarefas simples, construída usando React. Ela permite aos usuários adicionar, visualizar, marcar como completas e remover tarefas. As tarefas são armazenadas no localStorage do navegador, garantindo que persistam entre as sessões.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Estrutura do Projeto
+A estrutura do projeto é organizada da seguinte maneira:
 
-## Available Scripts
+.
+├── src
+│   ├── components
+│   │   ├── TaskForm.js
+│   │   └── TaskList.js
+│   ├── assets
+│   │   ├── TaskForm.css
+│   │   └── TaskList.css
+│   └── App.js
+├── public
+│   └── index.html
+└── package.json
 
-In the project directory, you can run:
+### Componentes
 
-### `npm start`
+## App.js
+Este é o componente principal da aplicação. Ele gerencia o estado das tarefas e armazena as tarefas no localStorage.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## TaskForm.js
+Este componente permite aos usuários adicionar novas tarefas. Ele contém um formulário com campos para o título e a descrição da tarefa.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## TaskList.js
+Este componente exibe a lista de tarefas. Ele permite que os usuários marquem tarefas como completas e as removam da lista.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Funcionamento
+Adicionar Tarefa: O usuário pode adicionar uma nova tarefa preenchendo o formulário com o título e a descrição e clicando no botão "Add Task".
+Marcar como Completa: O usuário pode marcar uma tarefa como completa clicando no texto da tarefa.
+Remover Tarefa: O usuário pode remover uma tarefa clicando no botão "Remove" ao lado da tarefa.
+Persistência de Dados: As tarefas são salvas no localStorage do navegador e carregadas quando a aplicação é iniciada.
+Conclusão
+Esta aplicação de lista de tarefas é uma implementação simples mas eficaz para gerenciamento de tarefas, utilizando React para a construção de componentes e gerenciamento de estado, e localStorage para persistência de dados. Com esta documentação, você deve ser capaz de entender e expandir a aplicação conforme necessário.
