@@ -1,53 +1,77 @@
-import React, { useState, useEffect, useRef } from 'react';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
+import React, { useState } from 'react';
+import { useFetch } from "./hooks/useFetch";
+
+const url = "http://localhost:3000/products";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const isInitialMount = useRef(true);
+  // Chama o hook personalizado useFetch para buscar dados da URL
+  const { data: items, httpConfig, loading, error } = useFetch(url);
 
-  // Recupera as tarefas do localStorage quando o componente é montado
-  useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
-    console.log('Recuperando tarefas do localStorage:', storedTasks);
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
+  // Estados para armazenar o nome e preço do produto
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
 
-  // Armazena as tarefas no localStorage sempre que a lista de tarefas é atualizada
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      console.log('Salvando tarefas no localStorage:', tasks);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-  }, [tasks]);
+  // Função para lidar com o envio do formulário
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
-    console.log('Adicionando tarefa:', task);
+    const product = {
+      name,
+      price,
+    };
+
+    // Chama a configuração HTTP para enviar um produto via POST
+    httpConfig(product, "POST");
+
+    // Reseta os campos do formulário
+    setName("");
+    setPrice("");
   };
 
-  const removeTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
-    console.log('Removendo tarefa no índice:', index);
-  };
-
-  const toggleComplete = (index) => {
-    const updatedTasks = tasks.map((task, i) => 
-      i === index ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-    console.log('Trocando estado de completude da tarefa no índice:', index);
+  // Função para remover um produto pelo ID
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
   };
 
   return (
     <div className="App">
-      <TaskForm addTask={addTask} />
-      <TaskList tasks={tasks} removeTask={removeTask} toggleComplete={toggleComplete} />
+      <h1>Lista de produtos</h1>
+      {loading && <p>Carregando dados...</p>}
+      {error && <p>{error}</p>}
+      <ul>
+        {items &&
+          items.map((product) => (
+            <li key={product.id}>
+              {product.name} - R$: {product.price}
+              <button onClick={() => handleRemove(product.id)}>Excluir</button>
+            </li>
+          ))}
+      </ul>
+
+      <div className="add-product">
+        <p>Adicionar produto:</p>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Nome:
+            <input
+              type="text"
+              value={name}
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label>
+            Preço:
+            <input
+              type="number"
+              value={price}
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </label>
+          {loading ? <p>Aguarde!</p> : <input type="submit" value="Criar" />}
+        </form>
+      </div>
     </div>
   );
 }
