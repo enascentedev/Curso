@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound";
 import './App.css'
 import Navbar from './components/Navbar';
 import Search from "./pages/Search";
-import { SearchForm } from "./components/SearchForm";
+import { HookUseState } from "./components/HookUseState";
 
 function App() {
   
@@ -17,7 +17,7 @@ function App() {
       <h1>Lista de produtos</h1>
 			<Router>
 				<Navbar/>
-				<SearchForm />
+				<HookUseState />
 				<Routes>
 					<Route path="/" element={<Home />}/>
 					<Route path="/about" element={<About />}/>
